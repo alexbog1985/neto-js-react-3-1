@@ -14,11 +14,11 @@ interface ListingProps {
 }
 
 
-export function Listing({products}: ListingProps) {
+export function Listing({products=[]}: ListingProps) {
     return (
         <div className="container">
             <div className="product-grid">
-                {products.map((item) =>
+                {products.map((item) => (
                     <ProductCard
                         key={item.listing_id}
                         listing_id={item.listing_id}
@@ -29,7 +29,7 @@ export function Listing({products}: ListingProps) {
                         price={item.price}
                         quantity={item.quantity}
                     />
-                )}
+                ))}
             </div>
         </div>
     )

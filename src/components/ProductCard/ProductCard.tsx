@@ -8,12 +8,12 @@ interface ProductCardProps {
     currency_code: string;
     price: string;
     quantity: number;
-    onClick?: () => void;
 }
 
 export function ProductCard({ url, MainImage, title, currency_code, price, quantity}: ProductCardProps) {
-    let code: string;
+    const displayedTitle = title.length > 50 ? title.slice(0, 50) + '…' : title;
 
+    let code: string;
     switch (currency_code) {
         case "USD":
             code = '$';
@@ -28,21 +28,21 @@ export function ProductCard({ url, MainImage, title, currency_code, price, quant
             code = currency_code + ' ';
     }
 
-    let stockClass: string = 'stock-medium';
+    let stockClass = 'stock-medium';
     if (quantity <= 10) stockClass = 'stock-low';
     if (quantity > 20) stockClass = 'stock-high';
 
-    const onClick: () => void = () => {
-        document.location=url
+    const handleClick = () => {
+        window.location.href=url
     }
 
 
     return (
-        <div className="product-card" onClick={onClick}>
+        <div className="product-card" onClick={handleClick}>
             <img src={MainImage?.url_570xN}
-                 alt="item.title" className="product-image"/>
+                 alt="" className="product-image"/>
             <div className="product-info">
-                <h3 className="product-title">{title}</h3>
+                <h3 className="product-title">{displayedTitle}</h3>
                 <div className="price-container">
                     <div className="product-price">{code}{price}</div>
                     <span className={"stock-badge " + stockClass}>{quantity} left</span>
