@@ -19,16 +19,7 @@ export function Listing({products=[]}: ListingProps) {
         <div className="container">
             <div className="product-grid">
                 {products.map((item) => (
-                    <ProductCard
-                        key={item.listing_id}
-                        listing_id={item.listing_id}
-                        url={item.url}
-                        MainImage={item.MainImage}
-                        title={item.title}
-                        currency_code={item.currency_code}
-                        price={item.price}
-                        quantity={item.quantity}
-                    />
+                    <ProductCard key={item.listing_id} {...item}/>
                 ))}
             </div>
         </div>

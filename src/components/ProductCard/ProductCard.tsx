@@ -1,16 +1,13 @@
-import type {MainImageModel} from "../../types/MainImageModel.ts";
-
 interface ProductCardProps {
-    listing_id: number;
     url: string;
-    MainImage?: MainImageModel;
+    image: string;
     title: string;
     currency_code: string;
     price: string;
     quantity: number;
 }
 
-export function ProductCard({ url, MainImage, title, currency_code, price, quantity}: ProductCardProps) {
+export function ProductCard({ url, image, title, currency_code, price, quantity}: ProductCardProps) {
     const displayedTitle = title.length > 50 ? title.slice(0, 50) + '…' : title;
 
     let code: string;
@@ -39,7 +36,7 @@ export function ProductCard({ url, MainImage, title, currency_code, price, quant
 
     return (
         <div className="product-card" onClick={handleClick}>
-            <img src={MainImage?.url_570xN}
+            <img src={image}
                  alt="" className="product-image"/>
             <div className="product-info">
                 <h3 className="product-title">{displayedTitle}</h3>
